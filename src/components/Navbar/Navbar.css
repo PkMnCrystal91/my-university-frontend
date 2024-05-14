@@ -1,0 +1,33 @@
+.logout-btn {
+  /* Reset all styles */
+  all: initial;
+
+  /* Optionally, you can set display to 'inline-block' or 'block' depending on your layout */
+  display: inline-block;
+
+  /* Reset any inherited styles */
+  font: inherit;
+
+  /* Ensure the button looks like a standard button */
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.main-bar {
+  height: 50px;
+}
+
+.main-bar p {
+  margin: 0;
+  padding: 0;
+}
+
+.line {
+  background: black;
+  border-left: solid 0.2px;
+  height: 80%;
+}

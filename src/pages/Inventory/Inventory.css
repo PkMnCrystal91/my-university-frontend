@@ -1,0 +1,21 @@
+.main-inventory {
+  height: 100vh;
+  position: relative;
+}
+
+input {
+  outline: none;
+  line-height: 34px;
+  border-radius: 10px;
+  border: 1px solid #5c5cff;
+}
+
+input::placeholder {
+  text-align: center;
+}
+
+.btn-inventory {
+  position: absolute;
+  top: 4rem;
+  right: 45rem;
+}
