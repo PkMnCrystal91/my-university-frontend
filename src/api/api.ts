@@ -32,10 +32,10 @@ export const postBooks = (data) => {
     });
 };
 
-export const getBooks = () => {
+export const getBooks = (page) => {
   const url = "http://localhost:8000/api/books";
   return axios
-    .get(url)
+    .get(url + `?page=${page}&limit=4`)
     .then((response) => response.data)
     .catch((error) => {
       throw error;

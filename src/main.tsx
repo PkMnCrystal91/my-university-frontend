@@ -6,9 +6,14 @@ import { Login } from "./pages/Login/Login.tsx";
 import { Inventory } from "./pages/Inventory/Inventory.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { BookForm } from "./pages/BookForm/BookForm.tsx";
+import { UserForm } from "./pages/UserForm/UserForm.tsx";
+import { StudentPage } from "./pages/StudentPage/StudentPage.tsx";
+import { CheckoutForm } from "./components/CheckoutForm/CheckoutForm.tsx";
+import { Booklist } from "./components/BookList/BookList.tsx";
+import { CheckoutPage } from "./pages/CheckoutPage/CheckoutPage";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
-    <BookForm />
+    <CheckoutPage />
   </BrowserRouter>
 );

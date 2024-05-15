@@ -19,3 +19,12 @@ export interface BooksCheckout {
   user: User;
   book: Book;
 }
+
+export interface IBookList {
+  id: number;
+  title: string;
+  author: string;
+  publishedYear: string;
+  genre: string;
+  stock: number;
+}
