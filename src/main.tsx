@@ -13,7 +13,7 @@ import { Booklist } from "./components/BookList/BookList.tsx";
 import { CheckoutPage } from "./pages/CheckoutPage/CheckoutPage";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
-    <CheckoutPage />
-  </BrowserRouter>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );

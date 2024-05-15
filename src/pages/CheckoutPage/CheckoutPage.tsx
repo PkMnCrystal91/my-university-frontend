@@ -4,6 +4,8 @@ import { Booklist } from "../../components/BookList/BookList";
 import { getBooks } from "../../api/api";
 import { IBookList } from "../../interfaces/bookscheckout";
 
+import "./CheckoutPage.css";
+
 export const CheckoutPage = () => {
   const [books, setBooks] = useState<IBookList[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,6 +38,8 @@ export const CheckoutPage = () => {
   return (
     <div className="container-fluid vh-100 bg-dark main-app  d-flex justify-content-center align-items-center">
       <div className="container login-container px-5 row justify-content-center">
+        <h2 className="text-white text-center mb-2">Books Checkout</h2>
+
         <div className="col-lg-5 d-flex gap-3 align-items-center">
           <CheckoutForm />
         </div>
@@ -46,7 +50,7 @@ export const CheckoutPage = () => {
           ))}
         </div>
 
-        <div className="bg-primary d-flex justify-content-center gap-4">
+        <div className="d-flex justify-content-center align-items-center gap-4 mt-2">
           <button
             onClick={handlePrevPage}
             disabled={currentPage === 1}
@@ -54,10 +58,10 @@ export const CheckoutPage = () => {
           >
             Back
           </button>
-          <h5>Books Pagination</h5>
+          <h5 className="text-white">Books Pagination</h5>
           <button
             onClick={handleNextPage}
-            disabled={currentPage === totalPages}
+            disabled={currentPage > totalPages}
             className="btn btn-secondary"
           >
             Next

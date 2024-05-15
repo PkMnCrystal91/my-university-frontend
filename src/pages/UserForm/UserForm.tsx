@@ -20,7 +20,9 @@ export const UserForm = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    const lowerCaseValue =
+      name === "email" || name === "role" ? value.toLowerCase() : value;
+    setFormData((prevData) => ({ ...prevData, [name]: lowerCaseValue }));
   };
 
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {

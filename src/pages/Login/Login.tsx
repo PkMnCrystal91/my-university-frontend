@@ -9,6 +9,15 @@ export const Login = () => {
     }),
     shallow
   );
+
+  const data = users.find((user) => user.role === "admin" || "student");
+  let role;
+  if (data) {
+    role = data[0]?.role;
+  }
+
+  console.log(role);
+
   const { loginUsers } = useAuthStore();
 
   interface loginForm {

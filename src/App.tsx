@@ -1,5 +1,10 @@
-import { useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { AppRouter } from "./routes/AppRouter";
 
 export const App = () => {
-  return <div>Hola</div>;
+  return (
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
+  );
 };

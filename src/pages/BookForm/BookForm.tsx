@@ -20,7 +20,13 @@ export const BookForm = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    if (name === "publishedyear") {
+      if (value.length <= 4 && /^\d+$/.test(value)) {
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+      }
+    } else {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
   };
 
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
@@ -77,6 +83,7 @@ export const BookForm = () => {
               onChange={handleChange}
               className="col-12 mt-2"
               placeholder="Ex: 1991"
+              maxLength={4}
             />
             <label className="col-12 mt-2 px-0">Genre</label>
             <input
