@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthStore } from "../../store/authStore";
 import { shallow } from "zustand/shallow";
 
@@ -10,13 +10,7 @@ export const Login = () => {
     shallow
   );
 
-  const data = users.find((user) => user.role === "admin" || "student");
-  let role;
-  if (data) {
-    role = data[0]?.role;
-  }
-
-  console.log(role);
+  useEffect(() => {}, [users]);
 
   const { loginUsers } = useAuthStore();
 

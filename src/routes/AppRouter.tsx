@@ -5,6 +5,7 @@ import { Inventory } from "../pages/Inventory/Inventory";
 import { BookForm } from "../pages/BookForm/BookForm";
 import { UserForm } from "../pages/UserForm/UserForm";
 import { Login } from "../pages/Login/Login";
+import { StudentPage } from "../pages/StudentPage/StudentPage";
 
 export const AppRouter = () => {
   const { users } = useAuthStore(
@@ -14,7 +15,9 @@ export const AppRouter = () => {
     shallow
   );
 
-  const data = users.find((user) => user.role === "admin" || "student");
+  const data = users
+    ? users.find((user) => user.role === "admin" || "student")
+    : "";
   let role: string;
   if (data) {
     role = data[0]?.role;
@@ -30,6 +33,10 @@ export const AppRouter = () => {
             <Route path="/" element={<Inventory />} />
             <Route path="/books" element={<BookForm />} />
             <Route path="/users" element={<UserForm />} />
+          </>
+        ) : role === "student" ? (
+          <>
+            <Route path="/" element={<StudentPage />} />
           </>
         ) : (
           <>
