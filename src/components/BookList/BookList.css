@@ -2,3 +2,10 @@
   margin: 0;
   padding: 0;
 }
+
+.book-list {
+  list-style-type: none; /* Remove default bullet points */
+  border: 1px solid #000; /* Add border around each list item */
+  padding: 10px; /* Add padding for spacing */
+  margin: 5px; /* Add margin for spacing between list items */
+}

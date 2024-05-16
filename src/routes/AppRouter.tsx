@@ -6,6 +6,7 @@ import { BookForm } from "../pages/BookForm/BookForm";
 import { UserForm } from "../pages/UserForm/UserForm";
 import { Login } from "../pages/Login/Login";
 import { StudentPage } from "../pages/StudentPage/StudentPage";
+import { CheckoutPage } from "../pages/CheckoutPage/CheckoutPage";
 
 export const AppRouter = () => {
   const { users } = useAuthStore(
@@ -23,16 +24,16 @@ export const AppRouter = () => {
     role = data[0]?.role;
   }
 
-  console.log(role);
-
   return (
     <>
       <Routes>
         {role === "admin" ? (
           <>
-            <Route path="/" element={<Inventory />} />
+            <Route path="/admin/*" element={<Inventory />} />
             <Route path="/books" element={<BookForm />} />
             <Route path="/users" element={<UserForm />} />
+            <Route path="/checkouts" element={<CheckoutPage />} />
+            <Route path="/*" element={<Navigate to="/admin/inventory" />} />
           </>
         ) : role === "student" ? (
           <>

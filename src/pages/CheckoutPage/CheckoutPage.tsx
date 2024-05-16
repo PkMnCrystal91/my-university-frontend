@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { CheckoutForm } from "../../components/CheckoutForm/CheckoutForm";
 import { Booklist } from "../../components/BookList/BookList";
 import { getBooks } from "../../api/api";
 import { IBookList } from "../../interfaces/bookscheckout";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { toastService } from "../../helpers/toastService";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./CheckoutPage.css";
 
@@ -25,6 +29,7 @@ export const CheckoutPage = () => {
       return Math.min(nextPage, maxPage);
     });
   };
+  const navigate = useNavigate();
 
   useEffect(() => {
     getBooks(currentPage).then((resp) => {
@@ -58,7 +63,12 @@ export const CheckoutPage = () => {
           >
             Back
           </button>
-          <h5 className="text-white">Books Pagination</h5>
+          <div>
+            <h5 className="text-white text-center">Books Pagination</h5>
+            <button onClick={() => navigate("/")} className="btn btn-success">
+              Go back to inventory
+            </button>
+          </div>
           <button
             onClick={handleNextPage}
             disabled={currentPage > totalPages}

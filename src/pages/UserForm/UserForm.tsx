@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { toastService } from "../../helpers/toastService";
+import "react-toastify/dist/ReactToastify.css";
+
 import { postUsers } from "../../api/api";
 
 export const UserForm = () => {
@@ -18,6 +23,8 @@ export const UserForm = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const lowerCaseValue =
@@ -29,6 +36,7 @@ export const UserForm = () => {
     e.preventDefault();
     try {
       await postUsers(formData);
+      toastService("User created!!");
       setFormData({
         firstname: "",
         lastname: "",
@@ -53,6 +61,18 @@ export const UserForm = () => {
 
         <div className="col-lg-5 bg-light box-2">
           <form onSubmit={handleSubmit} className="row p-2">
+            <ToastContainer
+              position="top-center"
+              autoClose={1000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
             <label className="col-12 mt-2 px-0">Firstname</label>
             <input
               name="firstname"
@@ -61,6 +81,7 @@ export const UserForm = () => {
               className="col-12 mt-2"
               type="text"
               placeholder="Ex: Samantha"
+              required
             />
             <label className="col-12 mt-2 px-0">Lastname</label>
             <input
@@ -70,6 +91,7 @@ export const UserForm = () => {
               onChange={handleChange}
               className="col-12 mt-2"
               placeholder="Ex: Freeman"
+              required
             />
             <label className="col-12 mt-2 px-0">Email</label>
             <input
@@ -79,6 +101,7 @@ export const UserForm = () => {
               onChange={handleChange}
               className="col-12 mt-2"
               placeholder="Ex: email@email.com"
+              required
             />
             <label className="col-12 mt-2 px-0">Role</label>
             <input
@@ -88,6 +111,7 @@ export const UserForm = () => {
               onChange={handleChange}
               className="col-12 mt-2"
               placeholder="Ex: student/admin"
+              required
             />
             <label className="col-12 mt-2 px-0">Password</label>
             <input
@@ -97,13 +121,17 @@ export const UserForm = () => {
               onChange={handleChange}
               className="col-12 mt-2"
               placeholder="Ex: 123456gt"
+              required
             />
             <button className="btn btn-success col-10 my-3 mx-auto">
               Submit Book
             </button>
           </form>
         </div>
-        <button className="btn btn-secondary col-10 my-3 mx-auto">
+        <button
+          onClick={() => navigate("/")}
+          className="btn btn-secondary col-10 my-3 mx-auto"
+        >
           Go Back to Inventory
         </button>
       </div>

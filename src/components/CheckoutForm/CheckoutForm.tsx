@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { postBooksCheckouts } from "../../api/api";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { toastService } from "../../helpers/toastService";
 
 export const CheckoutForm = () => {
   interface checkForm {
@@ -23,6 +26,7 @@ export const CheckoutForm = () => {
     e.preventDefault();
     try {
       await postBooksCheckouts(formData);
+      toastService("Book checkout successfully done!");
       setFormData({
         user_id: 0,
         book_id: 0,
@@ -35,6 +39,18 @@ export const CheckoutForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="row p-2 bg-light">
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <label className="col-12 mt-2 px-0">Please enter User ID</label>
       <input
         name="user_id"

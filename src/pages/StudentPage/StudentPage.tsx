@@ -15,8 +15,6 @@ export const StudentPage = () => {
     });
   }, []);
 
-  console.log(books);
-
   return (
     <div className="container-fluid  main-app">
       <Navbar />

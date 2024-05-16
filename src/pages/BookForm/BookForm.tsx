@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { postBooks } from "../../api/api";
+import { ToastContainer } from "react-toastify";
+import { toastService } from "../../helpers/toastService";
+import "react-toastify/dist/ReactToastify.css";
 
 export const BookForm = () => {
   interface bookForm {
@@ -18,6 +22,8 @@ export const BookForm = () => {
     stock: 0,
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (name === "publishedyear") {
@@ -33,6 +39,7 @@ export const BookForm = () => {
     e.preventDefault();
     try {
       await postBooks(formData);
+      toastService("Book submitted!!");
       setFormData({
         title: "",
         author: "",
@@ -57,6 +64,18 @@ export const BookForm = () => {
 
         <div className="col-lg-5 bg-light box-2">
           <form onSubmit={handleSubmit} className="row p-2">
+            <ToastContainer
+              position="top-center"
+              autoClose={1000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
             <label className="col-12 mt-2 px-0">Title</label>
             <input
               name="title"
@@ -65,6 +84,7 @@ export const BookForm = () => {
               className="col-12 mt-2"
               type="text"
               placeholder="Ex: The Lord of Rings"
+              required
             />
             <label className="col-12 mt-2 px-0">Author</label>
             <input
@@ -74,6 +94,7 @@ export const BookForm = () => {
               onChange={handleChange}
               className="col-12 mt-2"
               placeholder="Ex: John Ronald Reuel Tolkien"
+              required
             />
             <label className="col-12 mt-2 px-0">Published year</label>
             <input
@@ -84,6 +105,7 @@ export const BookForm = () => {
               className="col-12 mt-2"
               placeholder="Ex: 1991"
               maxLength={4}
+              required
             />
             <label className="col-12 mt-2 px-0">Genre</label>
             <input
@@ -93,6 +115,7 @@ export const BookForm = () => {
               onChange={handleChange}
               className="col-12 mt-2"
               placeholder="Ex: Fantasy"
+              required
             />
             <label className="col-12 mt-2 px-0">In Stock</label>
             <input
@@ -101,13 +124,17 @@ export const BookForm = () => {
               value={formData.stock}
               onChange={handleChange}
               className="col-12 mt-2"
+              required
             />
             <button className="btn btn-success col-10 my-3 mx-auto">
               Submit Book
             </button>
           </form>
         </div>
-        <button className="btn btn-secondary col-10 my-3 mx-auto">
+        <button
+          onClick={() => navigate("/")}
+          className="btn btn-secondary col-10 my-3 mx-auto"
+        >
           Go Back to Inventory
         </button>
       </div>
